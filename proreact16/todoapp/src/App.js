@@ -11,16 +11,10 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            userName: "Susanne",
-            items: [{action: "Buy Flowers", done: false},
-                {action: "Read book", done: true},
-                {action: "Go to the gym", done: false}],
+            userName: "",
+            items: [],
             showCompleted: true
         }
-    }
-
-    updateNewTextValue = (event) => {
-        this.setState({newItemText: event.target.value})
     }
 
     createNewToDo = (task) => {
@@ -38,12 +32,14 @@ export default class App extends Component {
    <ToDoRow key={i.action} item={i} callback={this.toggleToDo}/>);
 
     toggleToDo = (item) => this.setState({
-        items: this.state.items.map(i => i.action === item.action ? {...i, done: !item.done} : i)
-    });
+        items: this.state.items.map(i => i.action === item.action ? {...i, done: !item.done} : i),
+        }, 
+        () => localStorage.setItem("todos", JSON.stringify(this.state))
+        );
 
     changeStateData = () => {
         this.setState({
-            userName: this.state.userName === "Susanne" ? "Susanne" : "Baris"
+            userName: this.state.userName === "Susanne" ? "Baris" : "Susanne"
         })
     }
 
