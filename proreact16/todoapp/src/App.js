@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {ToDoBanner} from "./ToDoBanner";
+import {ToDoCreator} from "./ToDoCreator";
+import {ToDoRow} from "./ToDoRow";
 import logo from './logo.svg';
 import './App.css';
 
@@ -11,7 +14,6 @@ export default class App extends Component {
             items: [{action: "Buy Flowers", done: false},
                 {action: "Read book", done: true},
                 {action: "Go to the gym", done: false}],
-            newItemText: ""
         }
     }
 
@@ -19,24 +21,18 @@ export default class App extends Component {
         this.setState({newItemText: event.target.value})
     }
 
-    createNewToDo = () => {
-        if (!this.state.items.find(i => i.action === this.state.newItemText)) {
+    createNewToDo = (task) => {
+        if (!this.state.items.find(i => i.action === task)) {
             this.setState({
                 items: [...this.state.items,
-                    {action: this.state.newItemText, done:false}],
-                newItemText:""
-            })
+                    {action: task, done:false}]
+
+            });
         }
     }
 
     toDoTableRows = () => this.state.items.map(i =>
-    <tr key={i.action}>
-        <td>{i.action}</td>
-        <td>
-            <input type="checkbox" checked={i.done}
-                onChange={() => this.toggleToDo(i)}/>
-        </td>
-    </tr>
+   <ToDoRow key={i.action} item={i} callback={this.toggleToDo}/>
     );
 
     toggleToDo = (item) => this.setState({
@@ -52,27 +48,18 @@ export default class App extends Component {
     render() {
         return (
         <div>
-        <h4 className="bg-primary text-white text-center p-2">
-            {this.state.userName}'s To Do List
-            ({this.state.items.filter(t => !t.done).length} items to do)
-        </h4>
+        <ToDoBanner name ={this.state.userName} tasks={this.state.items} />
 
             <div className="container-fluid">
-                <div className= "my-1">
-                    <input className="form-control"
-                           value={this.state.newItemText}
-                           onChange={this.updateNewTextValue}/>
-                    <button className="btn btn-primary mt-1" onClick={this.createNewToDo}>Add</button>
-                </div>
-
+               <ToDoCreator callback = {this.createNewToDo()} />
+                <table className="table table-striped table-bordered">
+                    <thead>
+                    <tr><th>Description</th><th>Done</th></tr>
+                    </thead>
+                    <tbody>{this.toDoTableRows()}</tbody>
+                </table>
             </div>
 
-            <table className="table table-striped table-bordered">
-                <thead>
-                    <tr><th>Description</th><th>Done</th></tr>
-                </thead>
-                <tbody>{this.toDoTableRows()}</tbody>
-            </table>
         <button className= "btn btn-primary m-2" onClick={this.changeStateData}>
             Change
         </button>
