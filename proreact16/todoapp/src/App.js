@@ -26,7 +26,6 @@ export default class App extends Component {
             this.setState({
                 items: [...this.state.items,
                     {action: task, done:false}]
-
             });
         }
     }
@@ -51,7 +50,7 @@ export default class App extends Component {
         <ToDoBanner name ={this.state.userName} tasks={this.state.items} />
 
             <div className="container-fluid">
-               <ToDoCreator callback = {this.createNewToDo()} />
+               <ToDoCreator callback = {this.createNewToDo} />
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr><th>Description</th><th>Done</th></tr>
