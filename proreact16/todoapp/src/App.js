@@ -50,7 +50,7 @@ export default class App extends Component {
     componentDidMount = () => {
         let data = localStorage.getItem("todos");
         this.setState(data != null ? JSON.parse(data) : {
-            userName: "Adam",
+            userName: "Susanne",
             items: [{action: "Buy Flowers", done: false},
                 {action: "Read book", done: true},
                 {action: "Go to the ii", done: false}],
