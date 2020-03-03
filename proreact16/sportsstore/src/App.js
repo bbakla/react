@@ -5,15 +5,15 @@ import { BrowserRouter as Router, Route, Switch, Redirect }
   from "react-router-dom";
 import { ShopConnector } from "./shop/ShopConnector";
 import {CartSummary} from "./shop/CartSummary";
-import {CartSummary1} from "./shop/CartSummary1";
+import {CartDetails} from "./shop/CartDetails";
 
 export default class App extends Component {
 
   render() {
 
-    return <CartSummary1>
+    return <CartDetails>
 
-    </CartSummary1>
+    </CartDetails>
    /* return <Provider store={ SportsStoreDataStore }>
       <Router>
         <Switch>
