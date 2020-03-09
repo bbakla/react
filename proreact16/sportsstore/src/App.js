@@ -11,10 +11,7 @@ export default class App extends Component {
 
   render() {
 
-    return <CartDetails>
-
-    </CartDetails>
-   /* return <Provider store={ SportsStoreDataStore }>
+   return <Provider store={ SportsStoreDataStore }>
       <Router>
         <Switch>
           <Route path="/shop" component={ ShopConnector } />
@@ -22,6 +19,6 @@ export default class App extends Component {
         </Switch>
       </Router>
     </Provider>
-*/
+
   }
 }

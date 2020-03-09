@@ -27,15 +27,11 @@ export class CartDetailsRows extends Component{
                             onClick={() => this.props.removeFromCart(item.product)}>Remove</button>
                         </td>
                     </tr>)}
-
                     <tr>
                         <th colSpan="3" className="text-right">Total:</th>
                         <th colSpan="2">${this.props.cartPrice.toFixed(2)}</th>
                     </tr>
             </React.Fragment>
         }
-
-
     }
-
 }

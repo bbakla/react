@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export class PassingValuesToComponents extends Component {
+export class PassingValuesToTheChildComponents extends Component {
 
     showList = () => {
 

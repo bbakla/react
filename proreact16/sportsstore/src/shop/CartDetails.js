@@ -28,16 +28,13 @@ export class CartDetails extends Component {
                 </tbody>
             </table>
             <div className="text-center">
-                <BrowserRouter >
+
                 <Link className="btn btn-primary m-1" to="/shop">
                     Continue Shopping
                 </Link>
-                </BrowserRouter >
-                <BrowserRouter>
+
                     <Link className={ this.getLinkClasses() } to="/shop/checkout">
                         Checkout</Link>
-                </BrowserRouter >
-
             </div>
         </div>
     }
