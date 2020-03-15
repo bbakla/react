@@ -48,7 +48,7 @@ handleProductUpVote = productId => {
                 {
                     this.state.products.sort((a, b) => (b.votes - a.votes))
                         .map(product =>  <Product key = {'product - ' + product.id}
-                                                             id = {product.id}
+                                                         id = {product.id}
                                                          title={product.title}
                                                          description = {product.description}
                                                          url = {product.url}

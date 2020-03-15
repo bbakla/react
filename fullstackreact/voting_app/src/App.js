@@ -10,20 +10,13 @@ import {ProductList} from "./ProductList";
 export default class App extends Component {
 
   render() {
-
-
     return (
-    /*  <Container>
+        <div className="container-md">
+            <h1>Popular Products</h1>
+            <div className="card card-deck">
 
-                    <ProductList/>
-
-        </Container>*/
-
-        <div className="container">
-              <div className="card-header">
-                <h1>Popular Products</h1>
-              </div>
-            <ProductList/>
+                <ProductList/>
+            </div>
 
             </div>
 

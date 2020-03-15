@@ -8,7 +8,7 @@ export class Product extends Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row card-body">
 
                 <div className="col-sm-4">
 
@@ -18,9 +18,9 @@ export class Product extends Component {
 
 
                 <div className="col-sm-4">
-                    <div className="card-header">
-                        <a onClick={this.handleUpVote}>
-                            <i className="fa fa-caret-up"></i>
+                    <div className="popover-header">
+                        <a  onClick={this.handleUpVote}>
+                            <i className="fa fa-caret-up"/>
                         </a>
                         {this.props.votes}
 
@@ -33,21 +33,15 @@ export class Product extends Component {
                             {this.props.description}
                         </p>
 
-                        <div className="col-md-4 px-0">
+                        <div className="col-sm-4 card-text">
                             <span>submitted by:</span>
                             <img className="card-img-bottom rounded-circle circle-image"
                                  src={require(`${this.props.submitterAvatarUrl}`)} alt={this.props.submitterAvatarUrl.toLocaleString()}/>
                         </div>
-
                     </div>
-
-
                      <div>
-
                     </div>
-
                 </div>
-
 
             </div>
 

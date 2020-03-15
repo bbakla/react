@@ -42,9 +42,7 @@ export default class App extends Component {
    increaseCounter = (c) => {
        if (c == true) {
            this.setState({counter: this.state.counter + 1});
-
        }
-
    }
 
     render() {
@@ -86,7 +84,6 @@ export default class App extends Component {
                     </div>
                 </div>
             </div>
-
         </div>
     }
 }
