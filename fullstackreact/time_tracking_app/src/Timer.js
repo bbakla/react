@@ -8,7 +8,8 @@ export class Timer extends Component {
         const elapsedString = RenderElapsedString(this.props.elapsed)
 
         return (
-            <div className="card">
+
+            <div className="row border mt-3" >
                 <div className="card-body">
                     <div className="text-left ">
                         <label className="font-weight-bold">{this.props.title}</label>

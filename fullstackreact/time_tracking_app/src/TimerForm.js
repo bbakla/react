@@ -6,7 +6,8 @@ export class TimerForm extends Component {
         const submitText = this.props.title ? 'Update' : 'Create';
 
         return (
-            <div className="container card">
+<div className="row">
+            <div className="container border mt-3">
 
                     <form>
                         <div id="" className="form-group">
@@ -19,13 +20,13 @@ export class TimerForm extends Component {
                             <input type="text" className="form-control"defaultValue={this.props.project} id="project"/>
                         </div>
 
-                        <div className="btn-group btn-group-justified">
+                        <div className="btn-group d-flex mb-2">
                             <button className="btn btn-outline-primary">{submitText}</button>
                             <button className="btn btn-outline-warning">Cancel</button>
                         </div>
                     </form>
                 </div>
-
+</div>
         );
     }
 

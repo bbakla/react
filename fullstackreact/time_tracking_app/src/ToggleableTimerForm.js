@@ -11,11 +11,12 @@ export class ToggleableTimerForm extends Component {
                 </div>);
         } else {
             return (
-                    <div className="row">
-                        <button type="button" className="btn btn-outline-primary btn-block">
+
+                        <button type="button" className="btn btn-outline-primary btn-block mt-2">
                             <i className="fa fa-plus"></i>
                         </button>
-                    </div>
+
+
             );
         }
     }

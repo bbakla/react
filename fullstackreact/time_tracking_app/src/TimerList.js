@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {Timer} from "./Timer";
 import {EditableTimer} from "./EditableTimer";
 
 export class TimerList extends Component {
     render() {
         return <div className="container">
+
                 <EditableTimer title='Learn React'
                        project = 'Web Domination'
                        elapsed = '8565555'

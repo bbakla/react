@@ -7,9 +7,9 @@ export class TimerDashboard extends Component{
     render() {
         return (
                 <div className="row">
-                    <div>
+                    <div >
                         <TimerList/>
-                        <ToggleableTimerForm isOpen={true}/>
+                        <ToggleableTimerForm isOpen={false}/>
                     </div>
                 </div>
 
