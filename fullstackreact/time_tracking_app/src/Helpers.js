@@ -1,10 +1,25 @@
+import {v4 as uuid} from "uuid";
+
 export const RenderElapsedString = (elapsed, runningSince) => {
     let totalElapsed = elapsed;
+
     if (runningSince) {
         totalElapsed += Date.now() - runningSince;
     }
     return millisecondsToHuman(totalElapsed);
 }
+
+export  const  NewTimer = (attrs = {}) => {
+    const timer = {
+        title: attrs.title || 'Timer',
+        project: attrs.project || 'Project',
+        id: uuid(), // eslint-disable-line no-undef
+        elapsed: 0,
+    };
+
+    return timer;
+}
+
 
 function millisecondsToHuman(ms) {
     const seconds = Math.floor((ms / 1000) % 60);
@@ -25,3 +40,4 @@ function pad(numberString, size) {
     while (padded.length < size) padded = `0${padded}`;
     return padded;
 }
+

@@ -1,24 +1,32 @@
 import React, {Component} from "react";
 import {EditableTimer} from "./EditableTimer";
+import {Timer} from "./Timer";
 
 export class TimerList extends Component {
+
+    editTimer = (timer) => {
+        this.props.openTimerCreationForm(timer);
+    }
+
+
     render() {
-        return <div className="container">
+        return <div id ="timers" className="container">
 
-                <EditableTimer title='Learn React'
-                       project = 'Web Domination'
-                       elapsed = '8565555'
-                       runningSince = {null}
-                       editFormOpen = {false}
+            {this.props.timers.map(timer => (
+                <EditableTimer key={timer.id}
+                               title= {timer.title}
+                               project = {timer.project}
+                               elapsed = {timer.elapsed}
+                               id = {timer.id}
+                               runningSince = {timer.runningSince}
+                               openTimerCreationForm = {this.editTimer}
+                               deleteTimer = {this.props.deleteTimer}
+                               onStartClick = {this.props.onStartClick}
+                               onStopClick = {this.props.onStopClick}
+                               onStopClick = {this.props.onStopClick}
                 />
+            ))}
 
-                <EditableTimer title='Learn React2'
-                       project = 'Web Domination2'
-                       elapsed = '3890985'
-                       runningSince = {null}
-                       editFormOpen = {true}
-                />
             </div>
-
     }
 }

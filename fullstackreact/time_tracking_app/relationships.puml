@@ -2,9 +2,9 @@
 TimerForm : createTimer
 TimerForm : updateTimer
 
-App o-- AlarmDashboard
-AlarmDashboard o-- TimerList
-AlarmDashboard o-- ToggleableTimerForm
+App o-- TimerDashboard
+TimerDashboard o-- TimerList
+TimerDashboard o-- ToggleableTimerForm
 
 TimerList  "1" *-- "*" EditableTimer
 
