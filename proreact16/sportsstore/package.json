@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "npm-run-all --parallel reactstart webservice",
-    "reactstart": "react-scripts start",
+    "reactstart": "set PORT=3006 && react-scripts start",
     "webservice": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
