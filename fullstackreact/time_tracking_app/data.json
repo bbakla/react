@@ -1,8 +1,8 @@
 [
     {
-        "title": "Clear paper jam",
+        "title": "Clear paper jam:edited",
         "project": "Office Chores",
-        "elapsed": 1275516,
+        "elapsed": 34137,
         "id": "a73c1d19-f32d-4aff-b470-cea4e792406a",
         "runningSince": null
     },
@@ -10,7 +10,14 @@
         "title": "Ponder origins of universe",
         "project": "Life Chores",
         "id": "2c43306e-5b44-4ff8-8753-33c35adbd06f",
-        "elapsed": 11750,
-        "runningSince": 1456225941911
+        "elapsed": 33741,
+        "runningSince": null
+    },
+    {
+        "title": "working",
+        "project": "yesss",
+        "id": "0fbaac0f-5c5f-448d-971c-7e6c0fba8e13",
+        "elapsed": 4241,
+        "runningSince": 1586073096784
     }
 ]

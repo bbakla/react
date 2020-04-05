@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {TimerList} from "./TimerList";
 import {ToggleableTimerForm} from "./ToggleableTimerForm";
+import {createTimer, deleteTimer, getTimers, startTimer, stopTimer, updateTimer} from "./client";
 
 import {NewTimer} from "./Helpers"
-import {timerData} from "./data/data";
-import {Timer} from "./Timer";
+
 
 export class TimerDashboard extends Component{
 
@@ -17,31 +17,50 @@ export class TimerDashboard extends Component{
     }
 
     componentDidMount() {
-        this.setState({timers : timerData.timers});
+        this.loadTimersFromServer();
+        setInterval(this.loadTimersFromServer, 5000);
     }
+
+    loadTimersFromServer = () => {
+
+        getTimers((serverTimers) => {
+                this.setState({timers: serverTimers});
+            }
+        );
+    };
 
     createTimer = (timer) => {
         const t = NewTimer(timer)
-        this.setState({timers: [...this.state.timers, t]});
+
+        //this.setState({timers: [...this.state.timers, t]});
+        this.setState({
+            timers: this.state.timers.concat(t),
+        });
+
+        createTimer(t);
     }
 
-    editTimer = (editedTicket) => {
+    editTimer = (editedTimer) => {
         let newTimerArray = this.state.timers.map(t => {
-            if (t.id === editedTicket.id) {
+            if (t.id === editedTimer.id) {
                 return Object.assign({}, t,
-                    {title: editedTicket.title,
-                         project: editedTicket.project,
+                    {title: editedTimer.title,
+                         project: editedTimer.project,
                     });
             } else {
                 return t;
             }
-        })
+        });
 
         this.setState({timers: newTimerArray});
+
+        updateTimer(editedTimer);
     }
 
     deleteTimer = (timerId) => {
         this.setState({timers: this.state.timers.filter(t => t.id !== timerId)});
+
+        deleteTimer({id: timerId});
     }
 
     handleStartClick = (timerId) => {
@@ -64,7 +83,9 @@ export class TimerDashboard extends Component{
                     return timer;
                 }
             })
-        })
+        });
+
+        startTimer({id: timerId, start: now});
 
 }
 
@@ -84,6 +105,8 @@ export class TimerDashboard extends Component{
                 }
             }),
         });
+
+        stopTimer({id: timerId, stop: now});
     };
 
     render() {

@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {EditableTimer} from "./EditableTimer";
-import {Timer} from "./Timer";
 
 export class TimerList extends Component {
 
@@ -22,7 +21,6 @@ export class TimerList extends Component {
                                openTimerCreationForm = {this.editTimer}
                                deleteTimer = {this.props.deleteTimer}
                                onStartClick = {this.props.onStartClick}
-                               onStopClick = {this.props.onStopClick}
                                onStopClick = {this.props.onStopClick}
                 />
             ))}
