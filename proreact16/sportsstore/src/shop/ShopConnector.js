@@ -24,7 +24,7 @@ const filterProducts = (products = [], category) =>
         : products.filter(p => p.category.toLowerCase() === category.toLowerCase());
 
 export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
-    class extends Component {
+
         render() {
             return <Switch>
                 <Route path="/shop/products/:category?"
@@ -38,7 +38,7 @@ export const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(
 
                 <Redirect to="/shop/products"/>
             </Switch>
-        }
+        }}
 
         componentDidMount() {
             this.props.loadData(DataTypes.CATEGORIES);
