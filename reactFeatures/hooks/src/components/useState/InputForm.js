@@ -16,10 +16,17 @@ export default function InputForm() {
         surname: '',
     });
 
-    const width = useWindowWidth();
-    useChangeTitle(name + ' ' + surname);
+    //initialize state from Function
+    const [randomString] = useState(() => {
+        let token = generateRandomString();
+
+        return token;
+    })
+
+
 
     const handleChange = (e) => {
+        //setTemps({...temps, name: "something"});// that would set surname to an empty string
         setTemps({...temps, [e.target.name]: [e.target.value]});
         console.log(name);
     }
@@ -37,6 +44,7 @@ export default function InputForm() {
     })
 
     return (
+<div className="container">
         <form className="ml-5 mt-3">
             <div className="form-group">
                 <input type="text" defaultValue={name} className="form-control" placeholder="Enter name" name="name" key="name"
@@ -57,45 +65,22 @@ export default function InputForm() {
                        {...postcode} />
             </div>
 
-            <div className="form-group form-check float-left">
-                <label className="form-check-label">
-                    <input className="form-check-input" type="checkbox"/> Remember me
-                </label>
-            </div>
-
-            <div>
-                <h3>{width}</h3>
-            </div>
-            <button type="submit" className="btn btn-primary" onClick={handleSubmitClick}>Submit</button>
+            <button type="submit" className="btn btn-block  btn-primary " onClick={handleSubmitClick}>Submit</button>
         </form>
 
+    <div className="card mt-4">
+        <div className="card-header">
+            <h3>Initialize state from Function. </h3>
+        </div>
+
+        <div >
+            <h5>Generates a random string</h5>
+            <p>{randomString}</p>
+        </div>
+
+    </div>
+    </div>
             )
-}
-
-/*There are two ways to name this function
-
- 1. If we want to create it as custom hook, the name should start with "use".
- 2. It should start with a capital letter.
- */
-function useWindowWidth() {
-    const[width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => setWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    });
-
-    return width;
-}
-
-function useChangeTitle(title) {
-    useEffect(() => {
-        document.title = title;
-    })
 }
 
 function useFormInput(initialValue) {
@@ -109,4 +94,16 @@ function useFormInput(initialValue) {
         value,
         onChange: handleChange
     };
+}
+
+function generateRandomString() {
+    /*let result           = 5;
+    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;*/
+
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
