@@ -2,25 +2,29 @@ import React from 'react';
 import './App.css';
 import UseState from "./components/useState/UseState";
 import UseEffect from "./components/useEffect/UseEffect";
-import Header from "./components/header/header";
-import {Route} from "react-router-dom";
+import Header from "./components/header/Header";
+import {Route, Switch} from "react-router-dom";
+import UseContexts from "./components/useContext/UseContexts";
 
 function App() {
-return(
-    <div>
-        <Header/>
+    return (
+        <div>
+            <Header/>
 
-        <Route exact path="/useStates" component={UseState}/>
-        <Route exact path="/useEffects" component={UseEffect}/>
+            <Switch>
+                <Route exact path="/useStates" component={UseState}/>
+                <Route exact path="/useEffect" component={UseEffect}/>
+                <Route exact path="/useContext" component={UseContexts}/>
+            </Switch>
 
-    </div>
-)
+        </div>
+    )
 }
 
 function header() {
-    const  route = window.location.pathname;
+    const route = window.location.pathname;
 
-    if (route ==="/useStates") {
+    if (route === "/useStates") {
         return (<UseState/>);
     } else if (route === "/useEffect") {
         return (<UseEffect/>);

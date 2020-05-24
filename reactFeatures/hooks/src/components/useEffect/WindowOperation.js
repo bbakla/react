@@ -17,7 +17,7 @@ export default function WindowOperation() {
     return(
         <div className="card mt-4">
             <div>
-                <h3>{width}</h3>
+                <h3>The width is {width}</h3>
             </div>
         </div>
     );

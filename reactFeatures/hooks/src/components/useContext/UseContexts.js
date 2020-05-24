@@ -1,12 +1,14 @@
-import React from "react";
+import React, {Component, useState} from "react";
+
+
+import VideoMainPage from "./playVideo/VideoMainPage";
 
 export default function UseContexts() {
 
-    const ThemeContext = React.createContext('light');
+    return (
+        <div>
+          <VideoMainPage/>
+        </div>
 
-    const Display = () => {
-
-    }
-
-
+    );
 }
