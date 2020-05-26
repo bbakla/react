@@ -24,14 +24,13 @@ export default function InputForm() {
     })
 
 
-
     const handleChange = (e) => {
         //setTemps({...temps, name: "something"});// that would set surname to an empty string
         setTemps({...temps, [e.target.name]: [e.target.value]});
         console.log(name);
     }
 
-    const  handleSubmitClick = e => {
+    const handleSubmitClick = e => {
         e.preventDefault();
         setName(temps.name);
         setSurname(temps.surname);
@@ -44,43 +43,55 @@ export default function InputForm() {
     })
 
     return (
-<div className="container">
-        <form className="ml-5 mt-3">
-            <div className="form-group">
-                <input type="text" defaultValue={name} className="form-control" placeholder="Enter name" name="name" key="name"
-                onChange={handleChange}/>
-            </div>
-            <div className="form-group">
-                <input type="text" defaultValue={surname } className="form-control" placeholder="Enter surname" name="surname" key="surname"
-                onChange={handleChange}/>
-            </div>
+        <div className="container">
+            <form className="ml-5 mt-3">
+                <div className="form-group">
+                    <input type="text" defaultValue={name} className="form-control"
+                           placeholder="Enter name"
+                           name="name"
+                           key="name"
+                           onChange={handleChange}/>
+                </div>
+                <div className="form-group">
+                    <input type="text" defaultValue={surname} className="form-control"
+                           placeholder="Enter surname"
+                           name="surname" key="surname"
+                           onChange={handleChange}/>
+                </div>
 
-            <div className="form-group">
-                <input type="text" className="form-control" placeholder="Enter city" name="city" key="city"
-                       {...city} />
+                <div className="form-group">
+                    <input type="text" className="form-control"
+                           placeholder="Enter city"
+                           name="city"
+                           key="city"
+                           {...city} />
+                </div>
+
+                <div className="form-group">
+                    <input type="text" className="form-control"
+                           placeholder="Enter postcode"
+                           name="postcode"
+                           key="postcode"
+                           {...postcode} />
+                </div>
+
+                <button type="submit" className="btn btn-block  btn-primary " onClick={handleSubmitClick}>Submit
+                </button>
+            </form>
+
+            <div className="card mt-4">
+                <div className="card-header">
+                    <h3>Initialize state from Function. </h3>
+                </div>
+
+                <div>
+                    <h5>Generates a random string</h5>
+                    <p>{randomString}</p>
+                </div>
+
             </div>
-
-            <div className="form-group">
-                <input type="text" className="form-control" placeholder="Enter postcode" name="postcode" key="postcode"
-                       {...postcode} />
-            </div>
-
-            <button type="submit" className="btn btn-block  btn-primary " onClick={handleSubmitClick}>Submit</button>
-        </form>
-
-    <div className="card mt-4">
-        <div className="card-header">
-            <h3>Initialize state from Function. </h3>
         </div>
-
-        <div >
-            <h5>Generates a random string</h5>
-            <p>{randomString}</p>
-        </div>
-
-    </div>
-    </div>
-            )
+    )
 }
 
 function useFormInput(initialValue) {
@@ -90,7 +101,7 @@ function useFormInput(initialValue) {
         setValue(e.target.value);
     }
 
-    return{
+    return {
         value,
         onChange: handleChange
     };

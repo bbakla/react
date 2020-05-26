@@ -1,0 +1,18 @@
+import {Link} from "react-router-dom";
+import React from "react";
+
+export default function Post({post, excerpt}) {
+    return(
+        <article className={excerpt ? 'post-excerpt' : 'post'}>
+            <h2>{post.title}</h2>
+            <p>{excerpt ? post.body.substring(0, 100) : post.body}</p>
+
+            {excerpt && (
+                <Link to={`/posts/${post.id}`} className="button">
+                    View Post
+                </Link>
+            )}
+        </article>
+    );
+
+}

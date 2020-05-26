@@ -12,6 +12,7 @@ function App() {
     return (
         <div>
             <h1>Counter from CounterStore = {counter}</h1>
+
             <h3> Logged in situation {isLoggedIn}</h3>
 
             <button className="btn btn-primary" onClick={() => dispatch(increment(1))}>+</button>

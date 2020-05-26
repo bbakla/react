@@ -11,13 +11,13 @@ import Switch from "react-router-dom/es/Switch";
 import Route from "react-router-dom/es/Route";
 
 // Since routes are regular React components, they
-// may be rendered anywhere in the app, including in
+// may be rendered anywhere in the store, including in
 // child elements.
 //
-// This helps when it's time to code-split your app
+// This helps when it's time to code-split your store
 // into multiple bundles because code-splitting a
-// React Router app is the same as code-splitting
-// any other React app.
+// React Router store is the same as code-splitting
+// any other React store.
 
 export default class NestingExample extends Component {
     render() {

@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from "react-router-dom";
-import "@fortawesome/fontawesome-free/css/all.css";
+import {postStore} from "./store/postStore";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {bookmarkStore} from "./store/bookmarkStore";
 
 ReactDOM.render(
   <React.StrictMode>
-<BrowserRouter>
-    <App />
-</BrowserRouter>
+    <Provider store={bookmarkStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
