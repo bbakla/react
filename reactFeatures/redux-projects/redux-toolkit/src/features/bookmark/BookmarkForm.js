@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {add} from "./bookmarkSlice";
 import {useDispatch} from "react-redux";
+import TagComponent from "./components/TagComponent";
 
 export default function BookmarkForm() {
 
@@ -15,12 +16,20 @@ export default function BookmarkForm() {
         event.preventDefault();
 
         dispatch(add({name, url, tags, notes}));
+        setName("");
+        setUrl("");
+        setTags([]);
+        setNotes("");
 
     }
 
-    const handleTag = (event) => {
-
+    const addTagToBookmark = (tag) => {
+            setTags(tags => [...tags, tag]);
     };
+
+    const removeTagFromBookmark = (tag) => {
+        setTags(tags => tags.filter(t => t !== tag))
+    }
 
     const handleName = e => {
         setName(e.target.value);
@@ -50,12 +59,29 @@ export default function BookmarkForm() {
                 </div>
 
                 <div className="form-group">
-                    <input value={tags} name="tags" id="tags" placeholder="tags" onChange={handleTag}/>
+                    <TagComponent tags = {tags}
+                                  addTagToBookmark ={addTagToBookmark}
+                                      removeTagFromBookmark ={removeTagFromBookmark}/>
                 </div>
 
-                <button className="button btn-primary">Create a new Tag</button>
+                <button className="btn btn-outline-primary"> Save the bookmark</button>
+
             </form>
 
         </div>
     )
+}
+
+function useFormInput(initialValue) {
+    const [value, setValue] = useState(initialValue);
+
+    function handleChange(e) {
+        console.log(e.target.name + " " + e.target.value);
+        setValue(e.target.value);
+    }
+
+    return {
+        value,
+        onChange: handleChange
+    };
 }
