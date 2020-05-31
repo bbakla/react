@@ -40,7 +40,6 @@ export default function ToDoAppWithUseReducer() {
         dispatchChangeStatus({type: TASK_STATUS.TODO, name: name});
     }
 
-
     const [state, dispatchChangeStatus] = useReducer(reducer, initialState, undefined);
 
     function reducer(state, action) {
