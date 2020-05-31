@@ -7,7 +7,8 @@ return(
   <nav>
       <NavLink exact to="/useStates" activeStyle={activeStyle}>UseState</NavLink> {"| "}
       <NavLink exact to="/useEffect" activeStyle={{activeStyle}}>UseEffect</NavLink> {"| "}
-      <NavLink exact to="/useContext" activeStyle={{activeStyle}}>UseContext With Context API</NavLink>
+      <NavLink exact to="/useContext" activeStyle={{activeStyle}}>UseContext With Context API</NavLink> {"| "}
+<NavLink exact to="/useReducer" activeStyle={{activeStyle}}>Use Reducer</NavLink>
 
   </nav>
 );
