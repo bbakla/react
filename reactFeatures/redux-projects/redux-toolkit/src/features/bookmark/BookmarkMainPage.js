@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import BookmarkForm from "./BookmarkForm";
 import BookmarkList from "./bookmarkList";
 
-const Bookmark = () => {
+const BookmarkMainPage = () => {
 
     return (
         <div className="container">
@@ -20,4 +20,4 @@ const Bookmark = () => {
     )
 }
 
-export default Bookmark;
+export default BookmarkMainPage;

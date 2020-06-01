@@ -1,7 +1,9 @@
 const TASK_OPERATIONS = {
     DELETE: "delete",
     ADD: "add",
-    UPDATE: "update"
+    EDIT: "update",
+    ADD_TAG: "addTag",
+    REMOVE_TAG: "removeTag"
 };
 
 export default TASK_OPERATIONS;

@@ -9,7 +9,7 @@ import {DashboardPage} from "./features/posts/pages/DashboardPage";
 import {PostsPage} from "./features/posts/pages/PostsPage";
 import SinglePostPage from "./features/posts/pages/SinglePostPage";
 import Navbar from "./features/posts/Navbar";
-import Bookmark from "./features/bookmark/Bookmark";
+import BookmarkMainPage from "./features/bookmark/BookmarkMainPage";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
             </Router>
         </div>*/}
 
-        <Bookmark/>
+        <BookmarkMainPage/>
 
 
     </div>

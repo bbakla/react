@@ -7,7 +7,6 @@ export default function BookmarkList() {
     const dispatch = useDispatch();
 
     const deleteBookmark = (id) => {
-
         dispatch(remove(id));
     };
 
