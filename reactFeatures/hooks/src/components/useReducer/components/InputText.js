@@ -37,7 +37,7 @@ export default function InputText({cssStyle, defaultValue, inputClass, placeHold
 
     return(
         <div className={inputClass}>
-            <input value={value} name="name" id="name"
+            <input key={value} value={value} name="name" id={value}
                    placeholder={placeHolder}
                    disabled={disable}
                    style = {mergedStyle}

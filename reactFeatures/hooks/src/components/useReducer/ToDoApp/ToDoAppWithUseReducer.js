@@ -93,8 +93,6 @@ export default function ToDoAppWithUseReducer() {
 
                 return {...state, todos: tagRemoved};
 
-
-
             default:
                 const updated = state.todos.map(item => item.name === action.name
                     ? {...item, status: action.type} : item);
@@ -109,7 +107,7 @@ export default function ToDoAppWithUseReducer() {
                 <AddTodo addToDo={addToDo}/>
             </ToDoContext.Provider>
 
-            <div className="row-cols-md-6">
+            <div className="row">
                 <ToDoContext.Provider
                     value={{
                         todos: state.todos,

@@ -7,7 +7,7 @@ import ButtonGroup from "./ButtonGroup";
 
 export default function Todo({toDo}) {
 
-    const {editToDo, deleteToDo, startToTodo, doneToDo, cancelToDo, resetToDo, addTag, removeTag} = useContext(ToDoContext);
+    const {editToDo, addTag, removeTag} = useContext(ToDoContext);
 
     const cssStyle = () => {
 
@@ -22,7 +22,7 @@ export default function Todo({toDo}) {
                 return {color: "red"};
 
             case TASK_STATUS.COMPLETED:
-                return  {color: "blue"};
+                return {color: "blue"};
 
             default:
                 return {};
@@ -31,22 +31,27 @@ export default function Todo({toDo}) {
     }
 
     const addTagToItem = (tag) => {
-       {addTag(tag, toDo.name)}
+        {
+            addTag(tag, toDo.name)
+        }
     }
 
     const removeTagFromItem = (tag) => {
-        {removeTag(tag, toDo.name)}
+        {
+            removeTag(tag, toDo.name)
+        }
     }
 
-
     return (<tr>
-        <td ><InputText key ={toDo.name}
-            defaultValue={toDo.name}
-            editToDo={editToDo}
-            inputClass=""
-            placeHolder=""
-            cssStyle ={cssStyle()}
-        /></td>
+        <td>
+            <InputText key={toDo.name}
+
+                       defaultValue={toDo.name}
+                       editToDo={editToDo}
+                       inputClass=""
+                       placeHolder=""
+                       cssStyle={cssStyle()}
+            /></td>
         <td>{toDo.status}</td>
         <td>
             <TagComponent tags={toDo.tags} removeTag={removeTagFromItem} addTag={addTagToItem}/>
