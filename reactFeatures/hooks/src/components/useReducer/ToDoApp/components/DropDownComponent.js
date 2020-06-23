@@ -3,10 +3,7 @@ import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
 import TASK_STATUS from "./TaskStatus";
 
 export default function DropDownComponent({filter, setFilter, showAll}) {
-    //const showAll = "All";
-
     const [dropDownOpen, setDropDownOpen] = useState(false);
-    //const [filter, setFilter] = useState(showAll)
 
     const toggleDropDown = () => setDropDownOpen(prevState => !prevState);
 
