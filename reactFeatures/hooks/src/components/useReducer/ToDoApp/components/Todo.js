@@ -1,8 +1,9 @@
 import React, {useContext} from 'react'
 import {ToDoContext} from "../ToDoAppWithUseReducer";
 import TASK_STATUS from "./TaskStatus";
-import InputText from "./InputText";
+import InputText from "../../components/InputText";
 import TagComponent from "./TagComponent";
+import ButtonGroup from "./ButtonGroup";
 
 export default function Todo({toDo}) {
 
@@ -39,7 +40,7 @@ export default function Todo({toDo}) {
 
 
     return (<tr>
-        <td ><InputText
+        <td ><InputText key ={toDo.name}
             defaultValue={toDo.name}
             editToDo={editToDo}
             inputClass=""
@@ -51,14 +52,7 @@ export default function Todo({toDo}) {
             <TagComponent tags={toDo.tags} removeTag={removeTagFromItem} addTag={addTagToItem}/>
         </td>
         <td>
-            <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button className="button btn-outline-dark" onClick={() => startToTodo(toDo.name)}>Start</button>
-                <button className="button btn-outline-dark" onClick={() => doneToDo(toDo.name)}>Done</button>
-                <button className="button btn-outline-dark" onClick={() => cancelToDo(toDo.name)}>Cancel</button>
-                <button className="button btn-outline-dark" onClick={() => resetToDo(toDo.name)}>Reset</button>
-                <button className="button btn-outline-dark" onClick={() => deleteToDo(toDo.name)}>Delete</button>
-                <button className="button btn-outline-dark" onClick={() => deleteToDo(toDo.name)}>Edit</button>
-            </div>
+            <ButtonGroup todoName={toDo.name}/>
         </td>
     </tr>);
 }

@@ -3,7 +3,7 @@ const TASK_OPERATIONS = {
     ADD: "add",
     EDIT: "update",
     ADD_TAG: "addTag",
-    REMOVE_TAG: "removeTag"
+    REMOVE_TAG: "removeTag",
 };
 
 export default TASK_OPERATIONS;

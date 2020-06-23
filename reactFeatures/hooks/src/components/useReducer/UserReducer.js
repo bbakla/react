@@ -1,6 +1,6 @@
 import React, {useReducer} from "react";
 import Counter from "./Counter";
-import ToDoAppWithUseReducer from "./ToDoAppWithUseReducer";
+import ToDoAppWithUseReducer from "./ToDoApp/ToDoAppWithUseReducer";
 
 
 export default function UserReducer() {
@@ -32,14 +32,12 @@ export default function UserReducer() {
         <div className="ml-4">
 
             {explanation()}
-            <div className="row">
+
             <div className="col-md-6">
                 <Counter/>
             </div>
-            <div className="col-md-6">
-                <ToDoAppWithUseReducer/>
-            </div>
-            </div>
+
+
 
 
         </div>

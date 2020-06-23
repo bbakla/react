@@ -1,8 +1,9 @@
-import React, {createContext, useReducer} from "react";
+import React, {createContext, useMemo, useReducer} from "react";
 import TodoList from "./components/TodoList";
 import TASK_STATUS from "./components/TaskStatus";
 import AddTodo from "./components/AddTodo";
 import TASK_OPERATIONS from "./components/TaskOperations";
+
 
 export default function ToDoAppWithUseReducer() {
 
@@ -11,6 +12,11 @@ export default function ToDoAppWithUseReducer() {
             {
                 name: "test",
                 status: TASK_STATUS.TODO,
+                tags: ["tag1", "tag2"]
+            },
+            {
+                name: "test2",
+                status: TASK_STATUS.COMPLETED,
                 tags: ["tag1", "tag2"]
             }
         ]
@@ -45,12 +51,13 @@ export default function ToDoAppWithUseReducer() {
     }
 
     const addTag = (tag, itemName) => {
-        dispatchChangeStatus({type: TASK_OPERATIONS.ADD_TAG, name:itemName, tag:tag});
+        dispatchChangeStatus({type: TASK_OPERATIONS.ADD_TAG, name: itemName, tag: tag});
     }
 
     const removeTag = (tag, itemName) => {
-        dispatchChangeStatus({type: TASK_OPERATIONS.REMOVE_TAG, name:itemName, tag:tag});
+        dispatchChangeStatus({type: TASK_OPERATIONS.REMOVE_TAG, name: itemName, tag: tag});
     }
+
 
     const [state, dispatchChangeStatus] = useReducer(reducer, initialState, undefined);
 
@@ -86,6 +93,8 @@ export default function ToDoAppWithUseReducer() {
 
                 return {...state, todos: tagRemoved};
 
+
+
             default:
                 const updated = state.todos.map(item => item.name === action.name
                     ? {...item, status: action.type} : item);
@@ -93,7 +102,6 @@ export default function ToDoAppWithUseReducer() {
                 return {...state, todos: updated};
         }
     }
-
 
     return (
         <div className="container">
@@ -103,13 +111,22 @@ export default function ToDoAppWithUseReducer() {
 
             <div className="row-cols-md-6">
                 <ToDoContext.Provider
-                    value={{todos: state.todos, editToDo, deleteToDo, startToTodo, doneToDo, cancelToDo, resetToDo, addTag, removeTag}}>
+                    value={{
+                        todos: state.todos,
+                        editToDo,
+                        deleteToDo,
+                        startToTodo,
+                        doneToDo,
+                        cancelToDo,
+                        resetToDo,
+                        addTag,
+                        removeTag,
+                    }}>
                     <TodoList/>
                 </ToDoContext.Provider>
             </div>
         </div>
     );
-
 }
 
 export const ToDoContext = createContext({});
