@@ -2,10 +2,6 @@ import React, {useState} from "react";
 
 export default function ({addTag, removeTag, tags}) {
 
-    /*const handleRemoveTag = (tag) => {
-        {removeTag(tag)}
-    }*/
-
     const handleAddTag = (event) => {
         {addTag(event.target.value)}
         event.target.value="";
@@ -18,7 +14,6 @@ export default function ({addTag, removeTag, tags}) {
                     <li key={index} className="tag">
                         <span className='tag-title'>{tag}</span>
 
-                        {/*<span className='tags-input'*/}
                         <span className='tag-close-icon'
                               onClick={() => removeTag(tag)}
                         >

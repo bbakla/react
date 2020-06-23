@@ -3,6 +3,7 @@ import TodoList from "./components/TodoList";
 import TASK_STATUS from "./components/TaskStatus";
 import AddTodo from "./components/AddTodo";
 import TASK_OPERATIONS from "./components/TaskOperations";
+import AllTags from "./components/AllTags";
 
 
 export default function ToDoAppWithUseReducer() {
@@ -19,7 +20,9 @@ export default function ToDoAppWithUseReducer() {
                 status: TASK_STATUS.COMPLETED,
                 tags: ["tag1", "tag2"]
             }
-        ]
+        ],
+
+        allTags: []
     }
 
     const deleteToDo = (name) => {
@@ -82,16 +85,29 @@ export default function ToDoAppWithUseReducer() {
                 return {...state, todos: edited};
 
             case TASK_OPERATIONS.ADD_TAG:
-                const tagAdded = state.todos.map(item => item.name === action.name
-                    ? {...item, tags: [...item.tags, action.tag]} : item);
+                const tagAdded = state.todos.map(item => {
+                    if (item.name === action.name && item.tags.indexOf(action.tag) === -1) {
+                        return {...item, tags: [...item.tags, action.tag]};
+                    } else {
+                        return item;
+                    }
+                });
 
-                return {...state, todos: tagAdded};
+                let addToAllTags = state.allTags
+
+                if (state.allTags.indexOf(action.tag) === -1) {
+                    addToAllTags = [...state.allTags, action.tag];
+                }
+
+                return {...state, todos: tagAdded, allTags: addToAllTags};
 
             case TASK_OPERATIONS.REMOVE_TAG:
                 const tagRemoved = state.todos.map(item => item.name === action.name
                     ? {...item, tags: item.tags.filter(t => t !== action.tag)} : item);
 
-                return {...state, todos: tagRemoved};
+                const removeFromAllTags = state.allTags.filter(t => t !== action.tag)
+
+                return {...state, todos: tagRemoved, allTags: removeFromAllTags};
 
             default:
                 const updated = state.todos.map(item => item.name === action.name
@@ -111,6 +127,7 @@ export default function ToDoAppWithUseReducer() {
                 <ToDoContext.Provider
                     value={{
                         todos: state.todos,
+                        allTags: state.allTags,
                         editToDo,
                         deleteToDo,
                         startToTodo,
@@ -121,6 +138,9 @@ export default function ToDoAppWithUseReducer() {
                         removeTag,
                     }}>
                     <TodoList/>
+
+                    <AllTags/>
+
                 </ToDoContext.Provider>
             </div>
         </div>
