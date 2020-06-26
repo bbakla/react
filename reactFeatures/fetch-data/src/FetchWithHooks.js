@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function FetchWithHooks() {
 
     const [query, setQuery] = useState('redux');
-    const [{data, isLoading, isError}, doFetch] = useDataFetchCustomHook("https://hn.algolia.com/api/v1/search?query=redux", []);
+    const [{data, isLoading, isError}, doFetch] = useDataFetchCustomHook("http://hn.algolia.com/api/v1/search?query=redux", {hits: [],});
 
 
 
@@ -35,30 +35,30 @@ export default function FetchWithHooks() {
     return (
         <Fragment>
             <form onSubmit={event => {
-                doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
+                doFetch(`https://hn.algolia.com/api/v1/search?query=${query}`);
                 event.preventDefault();
             }}>
-            <input
-            type="text"
-            value={query}
-            onChange={event => setQuery(event.target.value)}
-            />
-            <button type="submit">Search</button>
+                <input
+                    type="text"
+                    value={query}
+                    onChange={event => setQuery(event.target.value)}
+                />
+                <button type="submit">Search</button>
             </form>
 
             {isError && <div>Something went wrong</div>}
 
             {isLoading ? (
-            <div>
-                <h1>Loading</h1>
-            </div>) : (
-        <ul>
-            {
-                data.hits.map(item => (
-                    <li key={item.objectID}>
-                        <a href={item.url}>{item.title}</a>
-                    </li>
-                ))}
+                <div>
+                    <h1>Loading</h1>
+                </div>) : (
+                <ul>
+                    {
+                        data.hits.map(item => (
+                            <li key={item.objectID}>
+                                <a href={item.url}>{item.title}</a>
+                            </li>
+                        ))}
                 </ul>
             )}
 
@@ -67,7 +67,7 @@ export default function FetchWithHooks() {
 }
 
 const useDataFetchCustomHook = (initialUrl, initialData) => {
-    const [data, setData] = useState({initialData});
+    const [data, setData] = useState(initialData);
     const [url, setUrl] = useState(initialUrl);
     const [isLoading, setLoading] = useState(false);
     const [isError, setError] = useState(false);
