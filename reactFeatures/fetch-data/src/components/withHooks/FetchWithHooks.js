@@ -9,8 +9,6 @@ export default function FetchWithHooks() {
     const [query, setQuery] = useState('redux');
     const [{data, isLoading, isError}, doFetch] = useDataFetchCustomHook("http://hn.algolia.com/api/v1/search?query=redux", {hits: [],});
 
-
-
     /*
      This generates an error on the dev console because async() function returns and Promise. However,
      it should return either nothing or a clean up function

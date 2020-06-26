@@ -11,13 +11,10 @@ export default function FetchWithHooksAndUseReducer() {
         { hits: [] },
     );
 
-
-
-
     return (
         <Fragment>
             <form onSubmit={event => {
-                doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`, []);
+                doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
                 event.preventDefault();
             }}>
                 <input
@@ -71,20 +68,26 @@ const useDataApi = (initialUrl, initialData) => {
     }, undefined);
 
     useEffect(() => {
+        let didCancel = false;
+
         const fetchData = async () => {
             dispatch({type: "FETCH_INIT"});
 
+            if (!didCancel) {
             try {
                 const result = await axios(url);
-
                 dispatch({type: "FETCH_SUCCESS", payload: result.data});
             } catch (e) {
-                dispatch({type: "FETCH_FAILURE"});
-
+                    dispatch({type: "FETCH_FAILURE"});
+                }
             }
         };
 
         fetchData();
+
+        return() => {
+            didCancel = true;
+        }
 
     }, [url]);
 
