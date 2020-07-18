@@ -4,19 +4,17 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem,
-    NavbarText
+    DropdownItem
 } from 'reactstrap';
 
 export default function Header() {
-    const activeStyle = {color: "blue"};
+   // const activeStyle = {color: "blue"};
 
     const [isOpen, setIsOpen] = useState(false);
 

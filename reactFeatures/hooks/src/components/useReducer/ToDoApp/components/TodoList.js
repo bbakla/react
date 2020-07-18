@@ -1,8 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react'
-import Todo from './Todo'
-import {ToDoContext} from "../ToDoAppWithUseReducer";
-import {Dropdown, DropdownToggle, DropdownItem} from 'reactstrap';
-import TASK_STATUS from "./TaskStatus";
+import React, { useState} from 'react'
+
 import DropDownComponent from "./DropDownComponent";
 import SearchComponent from "./SearchComponent";
 import ToDoTableView from "./ToDoTableView";
@@ -12,6 +9,8 @@ export default function TodoList() {
     const showAll = "All";
 
     const [filter, setFilter] = useState(showAll)
+    const [searchedTag, setSearchedTag] = useState('')
+
 
     return (
         <>
@@ -21,10 +20,10 @@ export default function TodoList() {
                 </div>
 
                 <div className="col float-right ml-5">
-                <SearchComponent/>
+                <SearchComponent handleSearchedTag = {setSearchedTag}  />
                 </div>
             </div>
-            <ToDoTableView filter={filter} showAll={showAll}/>
+            <ToDoTableView filter={filter} showAll={showAll} searchedTag = {searchedTag} />
         </>
     );
 }

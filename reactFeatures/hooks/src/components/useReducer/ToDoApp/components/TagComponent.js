@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 
 export default function ({addTag, removeTag, tags}) {
 
     const handleAddTag = (event) => {
-        {addTag(event.target.value)}
+        addTag(event.target.value)
         event.target.value="";
     }
 

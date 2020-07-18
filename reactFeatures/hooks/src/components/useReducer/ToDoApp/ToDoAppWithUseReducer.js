@@ -1,4 +1,4 @@
-import React, {createContext, useMemo, useReducer} from "react";
+import React, {createContext, useReducer, useState} from "react";
 import TodoList from "./components/TodoList";
 import TASK_STATUS from "./components/TaskStatus";
 import AddTodo from "./components/AddTodo";
@@ -13,7 +13,7 @@ export default function ToDoAppWithUseReducer() {
             {
                 name: "test",
                 status: TASK_STATUS.TODO,
-                tags: ["tag1", "tag2"]
+                tags: ["tag1", "tag3"]
             },
             {
                 name: "test2",
@@ -23,6 +23,12 @@ export default function ToDoAppWithUseReducer() {
         ],
 
         allTags: []
+    }
+    
+    const [searchTagItem, setSearchTagItem] = useState("");
+
+    const handleSearchTagItem = (t) => {
+        setSearchTagItem(t);
     }
 
     const deleteToDo = (name) => {
@@ -136,10 +142,11 @@ export default function ToDoAppWithUseReducer() {
                         resetToDo,
                         addTag,
                         removeTag,
+                        searchTagItem
                     }}>
                     <TodoList/>
 
-                    <AllTags/>
+                    <AllTags handleClickedItem ={setSearchTagItem}/>
 
                 </ToDoContext.Provider>
             </div>

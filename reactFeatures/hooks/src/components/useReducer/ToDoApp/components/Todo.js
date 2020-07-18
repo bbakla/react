@@ -31,15 +31,13 @@ export default function Todo({toDo}) {
     }
 
     const addTagToItem = (tag) => {
-        {
             addTag(tag, toDo.name)
-        }
     }
 
     const removeTagFromItem = (tag) => {
-        {
+
             removeTag(tag, toDo.name)
-        }
+
     }
 
     return (<tr>
