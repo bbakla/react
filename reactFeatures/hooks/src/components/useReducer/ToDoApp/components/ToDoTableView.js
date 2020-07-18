@@ -2,8 +2,8 @@ import Todo from "./Todo";
 import React, {useContext} from "react";
 import {ToDoContext} from "../ToDoAppWithUseReducer";
 
-export default function ToDoTableView({filter, showAll, searchedTag}) {
-    const {todos, searchTagItem} = useContext(ToDoContext);
+export default function ToDoTableView({filter, showAll, searchedTag, clickedSearchItem}) {
+    const {todos} = useContext(ToDoContext);
 
     const filterByStatus = (todo) => {
         return <Todo key={todo.name + todo.tags} toDo={todo}/>;
@@ -12,11 +12,7 @@ export default function ToDoTableView({filter, showAll, searchedTag}) {
     const displayCriteria = (todo) => {
         const filterCriteria = (filter === showAll ? true : todo.status === filter);
         const searchCriteria = searchedTag.length === 0 ? true : todo.tags.includes(searchedTag);
-
-        const clickedTagItemCriteria = searchTagItem.length === 0 ? true : todo.tags.includes(searchTagItem);
-
-        console.log(searchTagItem + " " + clickedTagItemCriteria)
-        console.log(todo.tags)
+        const clickedTagItemCriteria = clickedSearchItem.length === 0 ? true : todo.tags.includes(clickedSearchItem);
 
         return filterCriteria && searchCriteria && clickedTagItemCriteria;
     }

@@ -24,12 +24,6 @@ export default function ToDoAppWithUseReducer() {
 
         allTags: []
     }
-    
-    const [searchTagItem, setSearchTagItem] = useState("");
-
-    const handleSearchTagItem = (t) => {
-        setSearchTagItem(t);
-    }
 
     const deleteToDo = (name) => {
         dispatchChangeStatus({type: TASK_OPERATIONS.DELETE, name: name});
@@ -141,12 +135,9 @@ export default function ToDoAppWithUseReducer() {
                         cancelToDo,
                         resetToDo,
                         addTag,
-                        removeTag,
-                        searchTagItem
+                        removeTag
                     }}>
                     <TodoList/>
-
-                    <AllTags handleClickedItem ={setSearchTagItem}/>
 
                 </ToDoContext.Provider>
             </div>

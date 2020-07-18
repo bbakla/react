@@ -1,8 +1,9 @@
-import React, { useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import DropDownComponent from "./DropDownComponent";
 import SearchComponent from "./SearchComponent";
 import ToDoTableView from "./ToDoTableView";
+import AllTags from "./AllTags";
 
 
 export default function TodoList() {
@@ -10,9 +11,20 @@ export default function TodoList() {
 
     const [filter, setFilter] = useState(showAll)
     const [searchedTag, setSearchedTag] = useState('')
+    const [clickedSearchItem, setClickedSearchItem] = useState("");
+    const [resetSearchBox, setResetSearchBox] = useState(0);
 
+
+    const resetFilter = () => {
+        setSearchedTag("");
+        setClickedSearchItem("");
+        setResetSearchBox(prev => prev + 1);
+    }
+
+    const filterCss = clickedSearchItem.length === 0 || searchedTag.length === 0 ? "fa fa-eye" : "fa fa-eye-slash";
 
     return (
+
         <>
             <div className="row">
                 <div className="col">
@@ -20,10 +32,23 @@ export default function TodoList() {
                 </div>
 
                 <div className="col float-right ml-5">
-                <SearchComponent handleSearchedTag = {setSearchedTag}  />
+                    <SearchComponent key={resetSearchBox} handleSearchedTag={setSearchedTag}/>
+                </div>
+                <div className="col float-right ml-5">
+                    <button className="btn btn-outline-primary" onClick={resetFilter
+                    }>Reset
+                    </button>
+                </div>
+                <div>
+
+                    {/* <a href=""> <i className={filterCss} onClick={() => resetFilter()}/></a>*/}
+
                 </div>
             </div>
-            <ToDoTableView filter={filter} showAll={showAll} searchedTag = {searchedTag} />
+
+            <ToDoTableView filter={filter} showAll={showAll} searchedTag={searchedTag}
+                           clickedSearchItem={clickedSearchItem}/>
+            <AllTags handleClickedItem={setClickedSearchItem}/>
         </>
     );
 }
