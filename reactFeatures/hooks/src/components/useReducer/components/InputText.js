@@ -26,8 +26,6 @@ export default function InputText({cssStyle, defaultValue, inputClass, placeHold
                    placeholder={placeHolder}
                    disabled={disable}
                    style = {mergedStyle}
-
-                  // onKeyUp={handleEnterButton}
                    onChange={e =>  setValue(e.target.value) }
                    onKeyUp={event => event.key === "Enter" ?  handleEnterButton(event) : null}
                    /*onMouseOver={handleClick}
