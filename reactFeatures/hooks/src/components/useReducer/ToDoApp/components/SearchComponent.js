@@ -1,6 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
-import {ToDoContext} from "../ToDoAppWithUseReducer";
-
+import React, {useState} from "react";
 
 export default function SearchComponent({handleSearchedTag}) {
 
@@ -20,12 +18,6 @@ export default function SearchComponent({handleSearchedTag}) {
                        onChange={event => setSearchVariable(event.target.value)}
                        onKeyUp={event => event.key === "Enter" ? handleInput(event) : null}
                 />
-               {/* <button className="btn btn-outline-primary" onClick={ () => {
-                    reset();
-                }
-
-                } >Reset</button>*/}
-
         </>
     );
 }

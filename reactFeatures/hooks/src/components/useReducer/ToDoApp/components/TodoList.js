@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 import DropDownComponent from "./DropDownComponent";
 import SearchComponent from "./SearchComponent";
@@ -21,7 +21,7 @@ export default function TodoList() {
         setResetSearchBox(prev => prev + 1);
     }
 
-    const filterCss = clickedSearchItem.length === 0 || searchedTag.length === 0 ? "fa fa-eye" : "fa fa-eye-slash";
+   // const filterCss = clickedSearchItem.length === 0 || searchedTag.length === 0 ? "fa fa-eye" : "fa fa-eye-slash";
 
     return (
 

@@ -1,28 +1,14 @@
-import React, {createContext, useReducer, useState} from "react";
+import React, {createContext, useEffect, useReducer} from "react";
 import TodoList from "./components/TodoList";
 import TASK_STATUS from "./components/TaskStatus";
 import AddTodo from "./components/AddTodo";
 import TASK_OPERATIONS from "./components/TaskOperations";
-import AllTags from "./components/AllTags";
-
 
 export default function ToDoAppWithUseReducer() {
 
     const initialState = {
-        todos: [
-            {
-                name: "test",
-                status: TASK_STATUS.TODO,
-                tags: ["tag1", "tag3"]
-            },
-            {
-                name: "test2",
-                status: TASK_STATUS.COMPLETED,
-                tags: ["tag1", "tag2"]
-            }
-        ],
-
-        allTags: []
+        todos: JSON.parse(localStorage.getItem("todos")),
+        allTags: JSON.parse(localStorage.getItem("allTags"))
     }
 
     const deleteToDo = (name) => {
@@ -61,6 +47,25 @@ export default function ToDoAppWithUseReducer() {
         dispatchChangeStatus({type: TASK_OPERATIONS.REMOVE_TAG, name: itemName, tag: tag});
     }
 
+    const saveNewList = (newTodos) => {
+        localStorage.setItem("todos", JSON.stringify(newTodos));
+    }
+
+    const saveToTagList = (tags) => {
+        localStorage.setItem("allTags", JSON.stringify(tags));
+    }
+
+
+    useEffect(() => {
+        if (localStorage.getItem("todos") === "" ) {
+                localStorage.setItem("todos", JSON.stringify([]));
+        }
+
+        if (localStorage.getItem("allTags") === "") {
+            localStorage.setItem("allTags", JSON.stringify([]));
+        }
+    }, []);
+
 
     const [state, dispatchChangeStatus] = useReducer(reducer, initialState, undefined);
 
@@ -73,15 +78,41 @@ export default function ToDoAppWithUseReducer() {
                     tags: []
                 }];
 
+                saveNewList(newTodos);
+
                 return {...state, todos: newTodos};
 
             case TASK_OPERATIONS.DELETE:
-                const deletedToDos = state.todos.filter(t => t.name !== action.name)
-                return {...state, todos: deletedToDos};
+                const deletedTask = state.todos.find(todo => todo.name === action.name);
+                const remainingTasks = state.todos.filter(t => t.name !== action.name)
+
+                let remainingTags = [];
+
+                if (remainingTasks.length > 0 ) {
+                    let tagsToBeDeleted = []
+                    deletedTask.tags.forEach(t => {
+                        remainingTasks.forEach(todo => {
+                            if (!todo.tags.includes(t)) {
+                                tagsToBeDeleted.push(t);
+                            }
+                        });
+
+                    });
+
+                    let allTags = JSON.parse(localStorage.getItem("allTags"))
+                    remainingTags = allTags.filter(tag => !tagsToBeDeleted.includes(tag));
+                }
+                
+                saveNewList(remainingTasks)
+                saveToTagList(remainingTags)
+
+                return {...state, allTags: remainingTags, todos: remainingTasks};
 
             case TASK_OPERATIONS.EDIT:
                 const edited = state.todos.map(item => item.name === action.name
                     ? {...item, name: action.name} : item);
+
+                saveNewList(edited);
                 return {...state, todos: edited};
 
             case TASK_OPERATIONS.ADD_TAG:
@@ -99,6 +130,9 @@ export default function ToDoAppWithUseReducer() {
                     addToAllTags = [...state.allTags, action.tag];
                 }
 
+                saveNewList(tagAdded);
+                saveToTagList(addToAllTags)
+
                 return {...state, todos: tagAdded, allTags: addToAllTags};
 
             case TASK_OPERATIONS.REMOVE_TAG:
@@ -107,11 +141,16 @@ export default function ToDoAppWithUseReducer() {
 
                 const removeFromAllTags = state.allTags.filter(t => t !== action.tag)
 
+                saveNewList(tagRemoved);
+                saveToTagList(removeFromAllTags)
+
                 return {...state, todos: tagRemoved, allTags: removeFromAllTags};
 
             default:
                 const updated = state.todos.map(item => item.name === action.name
                     ? {...item, status: action.type} : item);
+
+                saveNewList(updated);
 
                 return {...state, todos: updated};
         }

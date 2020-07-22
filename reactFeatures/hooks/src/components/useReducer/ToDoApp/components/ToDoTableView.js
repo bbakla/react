@@ -30,9 +30,8 @@ export default function ToDoTableView({filter, showAll, searchedTag, clickedSear
             <tbody>
             {
                 todos.map(todo =>
-                    displayCriteria(todo) && (filterByStatus(todo))
-
-                )}
+                    displayCriteria(todo) && (filterByStatus(todo)))
+            }
             </tbody>
         </table>
     );
