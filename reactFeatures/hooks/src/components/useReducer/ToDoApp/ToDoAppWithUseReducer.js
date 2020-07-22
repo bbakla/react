@@ -72,15 +72,20 @@ export default function ToDoAppWithUseReducer() {
     function reducer(state, action) {
         switch (action.type) {
             case TASK_OPERATIONS.ADD:
-                const newTodos = [...state.todos, {
-                    name: action.name,
-                    status: TASK_STATUS.TODO,
-                    tags: []
-                }];
+                if (!state.todos.some(todo => todo.name === action.name)) {
+                    const newTodos = [...state.todos, {
+                        name: action.name,
+                        status: TASK_STATUS.TODO,
+                        tags: []
+                    }];
 
-                saveNewList(newTodos);
+                    saveNewList(newTodos);
 
-                return {...state, todos: newTodos};
+                    return {...state, todos: newTodos};
+                }
+
+                return {...state, todos: state.todos};
+
 
             case TASK_OPERATIONS.DELETE:
                 const deletedTask = state.todos.find(todo => todo.name === action.name);
