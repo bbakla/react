@@ -19,8 +19,8 @@ export default function ToDoAppWithUseReducer() {
         dispatchChangeStatus({type: TASK_OPERATIONS.ADD, name: name});
     }
 
-    const editToDo = (name) => {
-        dispatchChangeStatus({type: TASK_OPERATIONS.EDIT, name: name});
+    const editToDo = (name, oldValue) => {
+        dispatchChangeStatus({type: TASK_OPERATIONS.EDIT, name: name, oldValue: oldValue});
     }
 
     const startToTodo = (name) => {
@@ -109,9 +109,9 @@ export default function ToDoAppWithUseReducer() {
                 return {...state, allTags: remainingTags, todos: remainingTasks};
 
             case TASK_OPERATIONS.EDIT:
-                const edited = state.todos.map(item => item.name === action.name
-                    ? {...item, name: action.name} : item);
-
+                const edited = state.todos.map(item => {
+                return (item.name === action.oldValue) ? {...item, name: action.name} : item;
+            });
                 saveNewList(edited);
                 return {...state, todos: edited};
 

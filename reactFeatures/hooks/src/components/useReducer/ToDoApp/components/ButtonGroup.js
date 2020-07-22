@@ -12,7 +12,6 @@ export default function ButtonGroup({todoName}) {
             <button className="button btn-outline-dark" onClick={() => cancelToDo(todoName)}>Cancel</button>
             <button className="button btn-outline-dark" onClick={() => resetToDo(todoName)}>Reset</button>
             <button className="button btn-outline-dark" onClick={() => deleteToDo(todoName)}>Delete</button>
-            <button className="button btn-outline-dark" onClick={() => deleteToDo(todoName)}>Edit</button>
         </div>
     );
 }

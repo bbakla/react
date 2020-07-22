@@ -37,7 +37,6 @@ export default function Todo({toDo}) {
     const removeTagFromItem = (tag) => {
 
             removeTag(tag, toDo.name)
-
     }
 
     return (<tr>

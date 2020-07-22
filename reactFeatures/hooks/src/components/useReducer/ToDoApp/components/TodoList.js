@@ -41,8 +41,6 @@ export default function TodoList() {
                 </div>
                 <div>
 
-                    {/* <a href=""> <i className={filterCss} onClick={() => resetFilter()}/></a>*/}
-
                 </div>
             </div>
 
