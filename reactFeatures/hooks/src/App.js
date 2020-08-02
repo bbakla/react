@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
-import UseState from "./components/useState/UseState";
 import UseEffect from "./components/useEffect/UseEffect";
 import Header from "./components/header/Header";
 import {Route, Switch} from "react-router-dom";
 import UseContexts from "./components/useContext/UseContexts";
 import UserReducer from "./components/useReducer/UserReducer";
 import ToDoAppWithUseReducer from "./components/useReducer/ToDoApp/ToDoAppWithUseReducer";
+import ObjectStateVariable from "./components/useState/ObjectStateVariable";
+import InputForm from "./components/useState/InputForm";
+import ArrayStates from "./components/useState/ArrayStates";
+import CountClicker from "./components/useState/CountClicker";
 
 function App() {
     return (
@@ -18,11 +21,16 @@ function App() {
        </div>
         <div>
             <Switch>
-                <Route exact path="/useStates" component={UseState}/>
                 <Route exact path="/useEffect" component={UseEffect}/>
                 <Route exact path="/useContext" component={UseContexts}/>
                 <Route exact path="/useReducer" component={UserReducer}></Route>
                 <Route exact path="/toDoApp" component={ToDoAppWithUseReducer}></Route>
+                <Route exact path="/useStates/objectstate" component={ObjectStateVariable}></Route>
+                <Route exact path="/useStates/inputform" component={InputForm}></Route>
+                <Route exact path="/useStates/arraystate" component={ArrayStates}></Route>
+                <Route exact path="/useStates/countclicker" component={CountClicker}></Route>
+
+
 
             </Switch>
 

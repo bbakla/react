@@ -12,6 +12,11 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
+import {Route, Switch} from "react-router-dom";
+import ObjectStateVariable from "../useState/ObjectStateVariable";
+import InputForm from "../useState/InputForm";
+import ArrayStates from "../useState/ArrayStates";
+import CountClicker from "../useState/CountClicker";
 
 export default function Header() {
    // const activeStyle = {color: "blue"};
@@ -21,23 +26,24 @@ export default function Header() {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-       /* <nav>
-            <NavLink exact to="/useStates" activeStyle={activeStyle}>UseState</NavLink> {"| "}
-            <NavLink exact to="/useEffect" activeStyle={{activeStyle}}>UseEffect</NavLink> {"| "}
-            <NavLink exact to="/useContext" activeStyle={{activeStyle}}>UseContext With Context API</NavLink> {"| "}
-            <NavLink exact to="/useReducer" activeStyle={{activeStyle}}>Use Reducer
-            </NavLink>
 
-        </nav>*/
-
-      <>
+    <>
             <Navbar color="light" light expand="md">
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/useStates" >UseStates</NavLink>
-                        </NavItem>
+                        <UncontrolledDropdown nav inNavbar>
+                            <DropdownToggle nav caret>
+                                UseState
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem  href="/useStates/objectstate">Object states</DropdownItem>
+                                <DropdownItem  href="/useStates/arraystate">ArrayState</DropdownItem>
+                                <DropdownItem  href="/useStates/inputform">Input form</DropdownItem>
+                                <DropdownItem  href="/useStates/countclicker">Counter click</DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+
                             <NavItem>
                             <NavLink href="/useEffect" >UseEffect</NavLink>
                             </NavItem>
@@ -53,13 +59,8 @@ export default function Header() {
                                 UseReducer
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem  href="/useReducer">
-                                    MainPage
-                                </DropdownItem>
-                                <DropdownItem href="/toDoApp">
-                                    ToDoApp
-                                </DropdownItem>
-
+                                <DropdownItem  href="/useReducer">MainPage</DropdownItem>
+                                <DropdownItem href="/toDoApp">ToDoApp</DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
 
